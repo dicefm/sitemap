@@ -39,7 +39,7 @@ defmodule Sitemap.Mixfile do
   defp deps do
     [
       {:xml_builder, ">= 0.0.0"},
-      {:ecto, ">= 1.1.0", only: :test},
+      {:ecto, "~> 3.12", only: :test},
       {:sweet_xml, ">= 0.0.0", only: :test},
       {:credo, ">= 0.0.0", only: :dev},
       {:earmark, ">= 0.0.0", only: :dev},
