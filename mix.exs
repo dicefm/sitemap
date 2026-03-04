@@ -24,7 +24,7 @@ defmodule Sitemap.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:xml_builder, :inets], mod: {Sitemap, []}]
+    [extra_applications: [:inets], mod: {Sitemap, []}]
   end
 
   # Dependencies can be Hex packages:
