@@ -42,7 +42,7 @@ defmodule Sitemap.Builders.Url do
 
     elements
     |> Tuple.delete_at(2)
-    |> Tuple.append(combine)
+    |> Tuple.insert_at(2, combine)
   end
 
   defp news(data) do
