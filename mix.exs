@@ -42,9 +42,7 @@ defmodule Sitemap.Mixfile do
       {:ecto, "~> 3.12", only: :test},
       {:sweet_xml, ">= 0.0.0", only: :test},
       {:credo, ">= 0.0.0", only: :dev},
-      {:earmark, ">= 0.0.0", only: :dev},
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      {:inch_ex, ">= 0.0.0", only: :docs}
+      {:ex_doc, "~> 0.40", only: :dev}
     ]
   end
 
