@@ -26,7 +26,7 @@ defmodule Sitemap.BuildersUrlTest do
       Url.to_xml("path", [])
       |> XmlBuilder.generate()
 
-    assert xpath(parse(actual), ~x"//loc/text()") == 'http://www.example.com/path'
+    assert xpath(parse(actual), ~x"//loc/text()") == ~c"http://www.example.com/path"
   end
 
   test "Basic sitemap url" do
@@ -42,11 +42,11 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/loc'
-    assert xpath(parsed, ~x"//lastmod/text()") == 'lastmod'
-    assert xpath(parsed, ~x"//expires/text()") == 'expires'
-    assert xpath(parsed, ~x"//changefreq/text()") == 'changefreq'
-    assert xpath(parsed, ~x"//priority/text()") == '0.5'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/loc"
+    assert xpath(parsed, ~x"//lastmod/text()") == ~c"lastmod"
+    assert xpath(parsed, ~x"//expires/text()") == ~c"expires"
+    assert xpath(parsed, ~x"//changefreq/text()") == ~c"changefreq"
+    assert xpath(parsed, ~x"//priority/text()") == ~c"0.5"
   end
 
   test "Basic sitemap url with contains nil" do
@@ -62,11 +62,11 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/loc'
-    assert xpath(parsed, ~x"//lastmod/text()") == 'lastmod'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/loc"
+    assert xpath(parsed, ~x"//lastmod/text()") == ~c"lastmod"
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
-    assert xpath(parsed, ~x"//priority/text()") == '0.5'
+    assert xpath(parsed, ~x"//priority/text()") == ~c"0.5"
   end
 
   test "News sitemap url" do
@@ -88,23 +88,23 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//news:news/news:publication/news:name/text()") == 'Example'
-    assert xpath(parsed, ~x"//news:news/news:publication/news:language/text()") == 'en'
-    assert xpath(parsed, ~x"//news:news/news:title/text()") == 'My Article'
+    assert xpath(parsed, ~x"//news:news/news:publication/news:name/text()") == ~c"Example"
+    assert xpath(parsed, ~x"//news:news/news:publication/news:language/text()") == ~c"en"
+    assert xpath(parsed, ~x"//news:news/news:title/text()") == ~c"My Article"
 
     assert xpath(parsed, ~x"//news:news/news:keywords/text()") ==
-             'my article, articles about myself'
+             ~c"my article, articles about myself"
 
-    assert xpath(parsed, ~x"//news:news/news:stock_tickers/text()") == 'SAO:PETR3'
-    assert xpath(parsed, ~x"//news:news/news:publication_date/text()") == '2011-08-22'
-    assert xpath(parsed, ~x"//news:news/news:genres/text()") == 'PressRelease'
-    assert xpath(parsed, ~x"//news:news/news:access/text()") == 'Subscription'
+    assert xpath(parsed, ~x"//news:news/news:stock_tickers/text()") == ~c"SAO:PETR3"
+    assert xpath(parsed, ~x"//news:news/news:publication_date/text()") == ~c"2011-08-22"
+    assert xpath(parsed, ~x"//news:news/news:genres/text()") == ~c"PressRelease"
+    assert xpath(parsed, ~x"//news:news/news:access/text()") == ~c"Subscription"
   end
 
   test "Images sitemap url" do
@@ -123,20 +123,20 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/image.html'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/image.html"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//image:image/image:title/text()") == 'Title'
-    assert xpath(parsed, ~x"//image:image/image:loc/text()") == 'http://example.com/image.jpg'
-    assert xpath(parsed, ~x"//image:image/image:caption/text()") == 'Caption'
+    assert xpath(parsed, ~x"//image:image/image:title/text()") == ~c"Title"
+    assert xpath(parsed, ~x"//image:image/image:loc/text()") == ~c"http://example.com/image.jpg"
+    assert xpath(parsed, ~x"//image:image/image:caption/text()") == ~c"Caption"
 
     assert xpath(parsed, ~x"//image:image/image:license/text()") ==
-             'https://github.com/ikeikeikeike/sitemap/blob/master/LICENSE'
+             ~c"https://github.com/ikeikeikeike/sitemap/blob/master/LICENSE"
 
-    assert xpath(parsed, ~x"//image:image/image:geo_location/text()") == 'Limerick, Ireland'
+    assert xpath(parsed, ~x"//image:image/image:geo_location/text()") == ~c"Limerick, Ireland"
   end
 
   test "Multiple loc for images sitemap" do
@@ -164,20 +164,20 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/image.html'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/image.html"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//image:image/image:title/text()") == 'Title'
-    assert xpath(parsed, ~x"//image:image/image:loc/text()") == 'http://example.com/image.jpg'
-    assert xpath(parsed, ~x"//image:image/image:caption/text()") == 'Caption'
+    assert xpath(parsed, ~x"//image:image/image:title/text()") == ~c"Title"
+    assert xpath(parsed, ~x"//image:image/image:loc/text()") == ~c"http://example.com/image.jpg"
+    assert xpath(parsed, ~x"//image:image/image:caption/text()") == ~c"Caption"
 
     assert xpath(parsed, ~x"//image:image/image:license/text()") ==
-             'https://github.com/ikeikeikeike/sitemap/blob/master/LICENSE'
+             ~c"https://github.com/ikeikeikeike/sitemap/blob/master/LICENSE"
 
-    assert xpath(parsed, ~x"//image:image/image:geo_location/text()") == 'Limerick, Ireland'
+    assert xpath(parsed, ~x"//image:image/image:geo_location/text()") == ~c"Limerick, Ireland"
   end
 
   test "Videos sitemap url" do
@@ -200,32 +200,32 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/video.html'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/video.html"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//video:video/video:title/text()") == 'Grilling steaks for summer'
+    assert xpath(parsed, ~x"//video:video/video:title/text()") == ~c"Grilling steaks for summer"
 
     assert xpath(parsed, ~x"//video:video/video:thumbnail_loc/text()") ==
-             'http://www.example.com/thumbs/123.jpg'
+             ~c"http://www.example.com/thumbs/123.jpg"
 
     assert xpath(parsed, ~x"//video:video/video:description/text()") ==
-             'Alkis shows you how to get perfectly done steaks every time'
+             ~c"Alkis shows you how to get perfectly done steaks every time"
 
     assert xpath(parsed, ~x"//video:video/video:content_loc/text()") ==
-             'http://www.example.com/video123.flv'
+             ~c"http://www.example.com/video123.flv"
 
     assert xpath(parsed, ~x"//video:video/video:player_loc/text()") ==
-             'http://www.example.com/videoplayer.swf?video=123'
+             ~c"http://www.example.com/videoplayer.swf?video=123"
 
-    assert xpath(parsed, ~x"//video:video/video:player_loc/@allow_embed") == 'yes'
-    assert xpath(parsed, ~x"//video:video/video:player_loc/@autoplay") == 'ap=1'
-    assert xpath(parsed, ~x"//video:video/video:duration/text()") == '600'
+    assert xpath(parsed, ~x"//video:video/video:player_loc/@allow_embed") == ~c"yes"
+    assert xpath(parsed, ~x"//video:video/video:player_loc/@autoplay") == ~c"ap=1"
+    assert xpath(parsed, ~x"//video:video/video:duration/text()") == ~c"600"
 
     assert xpath(parsed, ~x"//video:video/video:expiration_date/text()") ==
-             '2009-11-05T19:20:30+08:00'
+             ~c"2009-11-05T19:20:30+08:00"
   end
 
   test "Multiple videos sitemap url" do
@@ -261,32 +261,32 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/video.html'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/video.html"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//video:video/video:title/text()") == 'Grilling steaks for summer'
+    assert xpath(parsed, ~x"//video:video/video:title/text()") == ~c"Grilling steaks for summer"
 
     assert xpath(parsed, ~x"//video:video/video:thumbnail_loc/text()") ==
-             'http://www.example.com/thumbs/123.jpg'
+             ~c"http://www.example.com/thumbs/123.jpg"
 
     assert xpath(parsed, ~x"//video:video/video:description/text()") ==
-             'Alkis shows you how to get perfectly done steaks every time'
+             ~c"Alkis shows you how to get perfectly done steaks every time"
 
     assert xpath(parsed, ~x"//video:video/video:content_loc/text()") ==
-             'http://www.example.com/video123.flv'
+             ~c"http://www.example.com/video123.flv"
 
     assert xpath(parsed, ~x"//video:video/video:player_loc/text()") ==
-             'http://www.example.com/videoplayer.swf?video=123'
+             ~c"http://www.example.com/videoplayer.swf?video=123"
 
-    assert xpath(parsed, ~x"//video:video/video:player_loc/@allow_embed") == 'yes'
-    assert xpath(parsed, ~x"//video:video/video:player_loc/@autoplay") == 'ap=1'
-    assert xpath(parsed, ~x"//video:video/video:duration/text()") == '600'
+    assert xpath(parsed, ~x"//video:video/video:player_loc/@allow_embed") == ~c"yes"
+    assert xpath(parsed, ~x"//video:video/video:player_loc/@autoplay") == ~c"ap=1"
+    assert xpath(parsed, ~x"//video:video/video:duration/text()") == ~c"600"
 
     assert xpath(parsed, ~x"//video:video/video:expiration_date/text()") ==
-             '2009-11-05T19:20:30+08:00'
+             ~c"2009-11-05T19:20:30+08:00"
   end
 
   test "Videos sitemap url fully" do
@@ -328,58 +328,58 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/video.html'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/video.html"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//video:video/video:title/text()") == 'Grilling steaks for summer'
+    assert xpath(parsed, ~x"//video:video/video:title/text()") == ~c"Grilling steaks for summer"
 
     assert xpath(parsed, ~x"//video:video/video:thumbnail_loc/text()") ==
-             'http://www.example.com/thumbs/123.jpg'
+             ~c"http://www.example.com/thumbs/123.jpg"
 
     assert xpath(parsed, ~x"//video:video/video:description/text()") ==
-             'Alkis shows you how to get perfectly done steaks every time'
+             ~c"Alkis shows you how to get perfectly done steaks every time"
 
     assert xpath(parsed, ~x"//video:video/video:content_loc/text()") ==
-             'http://www.example.com/video123.flv'
+             ~c"http://www.example.com/video123.flv"
 
     assert xpath(parsed, ~x"//video:video/video:player_loc/text()") ==
-             'http://www.example.com/videoplayer.swf?video=123'
+             ~c"http://www.example.com/videoplayer.swf?video=123"
 
-    assert xpath(parsed, ~x"//video:video/video:player_loc/@allow_embed") == 'yes'
-    assert xpath(parsed, ~x"//video:video/video:player_loc/@autoplay") == 'ap=1'
-    assert xpath(parsed, ~x"//video:video/video:duration/text()") == '600'
+    assert xpath(parsed, ~x"//video:video/video:player_loc/@allow_embed") == ~c"yes"
+    assert xpath(parsed, ~x"//video:video/video:player_loc/@autoplay") == ~c"ap=1"
+    assert xpath(parsed, ~x"//video:video/video:duration/text()") == ~c"600"
 
     assert xpath(parsed, ~x"//video:video/video:expiration_date/text()") ==
-             '2009-11-05T19:20:30+08:00'
+             ~c"2009-11-05T19:20:30+08:00"
 
-    assert xpath(parsed, ~x"//video:video/video:rating/text()") == '0.5'
-    assert xpath(parsed, ~x"//video:video/video:view_count/text()") == '1000'
+    assert xpath(parsed, ~x"//video:video/video:rating/text()") == ~c"0.5"
+    assert xpath(parsed, ~x"//video:video/video:view_count/text()") == ~c"1000"
 
     assert xpath(parsed, ~x"//video:video/video:publication_date/text()") ==
-             '2009-11-05T19:20:30Z'
+             ~c"2009-11-05T19:20:30Z"
 
-    assert xpath(parsed, ~x"//video:video/video:family_friendly/text()") == 'yes'
-    assert xpath(parsed, ~x"//video:video/video:restriction/text()") == 'IE GB US CA'
-    assert xpath(parsed, ~x"//video:video/video:restriction/@relationship") == 'allow'
+    assert xpath(parsed, ~x"//video:video/video:family_friendly/text()") == ~c"yes"
+    assert xpath(parsed, ~x"//video:video/video:restriction/text()") == ~c"IE GB US CA"
+    assert xpath(parsed, ~x"//video:video/video:restriction/@relationship") == ~c"allow"
 
     assert xpath(parsed, ~x"//video:video/video:gallery_loc/text()") ==
-             'http://cooking.example.com'
+             ~c"http://cooking.example.com"
 
-    assert xpath(parsed, ~x"//video:video/video:gallery_loc/@title") == 'Cooking Videos'
-    assert xpath(parsed, ~x"//video:video/video:price/text()") == '1.99'
-    assert xpath(parsed, ~x"//video:video/video:price/@currency") == 'EUR'
-    assert xpath(parsed, ~x"//video:video/video:price/@resolution") == 'HD'
-    assert xpath(parsed, ~x"//video:video/video:price/@type") == 'own'
-    assert xpath(parsed, ~x"//video:video/video:requires_subscription/text()") == 'no'
-    assert xpath(parsed, ~x"//video:video/video:uploader/text()") == 'GrillyMcGrillerson'
+    assert xpath(parsed, ~x"//video:video/video:gallery_loc/@title") == ~c"Cooking Videos"
+    assert xpath(parsed, ~x"//video:video/video:price/text()") == ~c"1.99"
+    assert xpath(parsed, ~x"//video:video/video:price/@currency") == ~c"EUR"
+    assert xpath(parsed, ~x"//video:video/video:price/@resolution") == ~c"HD"
+    assert xpath(parsed, ~x"//video:video/video:price/@type") == ~c"own"
+    assert xpath(parsed, ~x"//video:video/video:requires_subscription/text()") == ~c"no"
+    assert xpath(parsed, ~x"//video:video/video:uploader/text()") == ~c"GrillyMcGrillerson"
 
     assert xpath(parsed, ~x"//video:video/video:uploader/@info") ==
-             'http://www.example.com/users/grillymcgrillerson'
+             ~c"http://www.example.com/users/grillymcgrillerson"
 
-    assert xpath(parsed, ~x"//video:video/video:live/text()") == 'yes'
+    assert xpath(parsed, ~x"//video:video/video:live/text()") == ~c"yes"
   end
 
   test "Alternates sitemap url" do
@@ -397,16 +397,16 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/video.html'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/video.html"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//xhtml:link/@href") == 'http://www.example.de/index.html'
-    assert xpath(parsed, ~x"//xhtml:link/@hreflang") == 'de'
-    assert xpath(parsed, ~x"//xhtml:link/@media") == 'only screen and (max-width: 640px)'
-    assert xpath(parsed, ~x"//xhtml:link/@rel") == 'alternate nofollow'
+    assert xpath(parsed, ~x"//xhtml:link/@href") == ~c"http://www.example.de/index.html"
+    assert xpath(parsed, ~x"//xhtml:link/@hreflang") == ~c"de"
+    assert xpath(parsed, ~x"//xhtml:link/@media") == ~c"only screen and (max-width: 640px)"
+    assert xpath(parsed, ~x"//xhtml:link/@rel") == ~c"alternate nofollow"
   end
 
   test "Multiple alternates sitemap url" do
@@ -432,16 +432,16 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//loc/text()") == 'http://www.example.com/video.html'
+    assert xpath(parsed, ~x"//loc/text()") == ~c"http://www.example.com/video.html"
     assert xpath(parsed, ~x"//lastmod/text()") != nil
     assert xpath(parsed, ~x"//expires/text()") == nil
     assert xpath(parsed, ~x"//changefreq/text()") == nil
     assert xpath(parsed, ~x"//priority/text()") == nil
 
-    assert xpath(parsed, ~x"//xhtml:link/@href") == 'http://www.example.de/index.html'
-    assert xpath(parsed, ~x"//xhtml:link/@hreflang") == 'de'
-    assert xpath(parsed, ~x"//xhtml:link/@media") == 'only screen and (max-width: 640px)'
-    assert xpath(parsed, ~x"//xhtml:link/@rel") == 'alternate nofollow'
+    assert xpath(parsed, ~x"//xhtml:link/@href") == ~c"http://www.example.de/index.html"
+    assert xpath(parsed, ~x"//xhtml:link/@hreflang") == ~c"de"
+    assert xpath(parsed, ~x"//xhtml:link/@media") == ~c"only screen and (max-width: 640px)"
+    assert xpath(parsed, ~x"//xhtml:link/@rel") == ~c"alternate nofollow"
   end
 
   test "Geo sitemap url" do
@@ -456,7 +456,7 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//geo:geo/geo:format/text()") == 'kml'
+    assert xpath(parsed, ~x"//geo:geo/geo:format/text()") == ~c"kml"
   end
 
   test "Mobile sitemap url" do
@@ -469,7 +469,7 @@ defmodule Sitemap.BuildersUrlTest do
     parsed = parse(actual)
 
     assert xpath(parsed, ~x"//mobile:mobile") ==
-             {:xmlElement, :"mobile:mobile", :"mobile:mobile", {'mobile', 'mobile'},
+             {:xmlElement, :"mobile:mobile", :"mobile:mobile", {~c"mobile", ~c"mobile"},
               {:xmlNamespace, [], []}, [url: 1], 10, [], [], [], :undefined, :undeclared}
   end
 
@@ -494,10 +494,10 @@ defmodule Sitemap.BuildersUrlTest do
       |> XmlBuilder.generate()
 
     parsed = parse(actual)
-    assert xpath(parsed, ~x"//PageMap/DataObject/@id") == 'hibachi'
-    assert xpath(parsed, ~x"//PageMap/DataObject/@type") == 'document'
-    assert xpath(parsed, ~x"//PageMap/DataObject/Attribute/text()") == 'Dragon'
-    assert xpath(parsed, ~x"//PageMap/DataObject/Attribute/@name") == 'name'
+    assert xpath(parsed, ~x"//PageMap/DataObject/@id") == ~c"hibachi"
+    assert xpath(parsed, ~x"//PageMap/DataObject/@type") == ~c"document"
+    assert xpath(parsed, ~x"//PageMap/DataObject/Attribute/text()") == ~c"Dragon"
+    assert xpath(parsed, ~x"//PageMap/DataObject/Attribute/@name") == ~c"name"
   end
 
   test "date and datetime convert to iso8601" do

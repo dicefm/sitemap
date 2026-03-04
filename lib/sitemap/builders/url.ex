@@ -80,10 +80,10 @@ defmodule Sitemap.Builders.Url do
         :"image:image",
         Funcs.eraser([
           element(:"image:loc", data[:loc]),
-          unless(is_nil(data[:title]), do: element(:"image:title", data[:title])),
-          unless(is_nil(data[:license]), do: element(:"image:license", data[:license])),
-          unless(is_nil(data[:caption]), do: element(:"image:caption", data[:caption])),
-          unless(is_nil(data[:geo_location]),
+          if(not is_nil(data[:title]), do: element(:"image:title", data[:title])),
+          if(not is_nil(data[:license]), do: element(:"image:license", data[:license])),
+          if(not is_nil(data[:caption]), do: element(:"image:caption", data[:caption])),
+          if(not is_nil(data[:geo_location]),
             do: element(:"image:geo_location", data[:geo_location])
           )
         ])
@@ -122,37 +122,37 @@ defmodule Sitemap.Builders.Url do
           element(:"video:content_loc", data[:content_loc]),
           element(:"video:thumbnail_loc", data[:thumbnail_loc]),
           element(:"video:duration", data[:duration]),
-          unless(is_nil(data[:gallery_loc]),
+          if(not is_nil(data[:gallery_loc]),
             do: element(:"video:gallery_loc", %{title: data[:gallery_title]}, data[:gallery_loc])
           ),
-          unless(is_nil(data[:rating]), do: element(:"video:rating", data[:rating])),
-          unless(is_nil(data[:view_count]), do: element(:"video:view_count", data[:view_count])),
-          unless(is_nil(data[:expiration_date]),
+          if(not is_nil(data[:rating]), do: element(:"video:rating", data[:rating])),
+          if(not is_nil(data[:view_count]), do: element(:"video:view_count", data[:view_count])),
+          if(not is_nil(data[:expiration_date]),
             do: element(:"video:expiration_date", Funcs.iso8601(data[:expiration_date]))
           ),
-          unless(is_nil(data[:publication_date]),
+          if(not is_nil(data[:publication_date]),
             do: element(:"video:publication_date", Funcs.iso8601(data[:publication_date]))
           ),
-          unless(is_nil(data[:tags]), do: Enum.map(data[:tags] || [], &element(:"video:tag", &1))),
-          unless(is_nil(data[:tag]), do: element(:"video:tag", data[:tag])),
-          unless(is_nil(data[:category]), do: element(:"video:category", data[:category])),
-          unless(is_nil(data[:family_friendly]),
+          if(not is_nil(data[:tags]), do: Enum.map(data[:tags] || [], &element(:"video:tag", &1))),
+          if(not is_nil(data[:tag]), do: element(:"video:tag", data[:tag])),
+          if(not is_nil(data[:category]), do: element(:"video:category", data[:category])),
+          if(not is_nil(data[:family_friendly]),
             do: element(:"video:family_friendly", Funcs.yes_no(data[:family_friendly]))
           ),
-          unless is_nil(data[:restriction]) do
+          if not is_nil(data[:restriction]) do
             attrs = %{relationship: Funcs.allow_deny(data[:relationship])}
             element(:"video:restriction", attrs, data[:restriction])
           end,
-          unless is_nil(data[:uploader]) do
+          if not is_nil(data[:uploader]) do
             attrs = %{}
             attrs = ifput(data[:uploader_info], attrs, &Map.put(&1, :info, data[:uploader_info]))
             element(:"video:uploader", attrs, data[:uploader])
           end,
-          unless(is_nil(data[:price]),
+          if(not is_nil(data[:price]),
             do: element(:"video:price", video_price_attrs(data), data[:price])
           ),
-          unless(is_nil(data[:live]), do: element(:"video:live", Funcs.yes_no(data[:live]))),
-          unless(is_nil(data[:requires_subscription]),
+          if(not is_nil(data[:live]), do: element(:"video:live", Funcs.yes_no(data[:live]))),
+          if(not is_nil(data[:requires_subscription]),
             do:
               element(:"video:requires_subscription", Funcs.yes_no(data[:requires_subscription]))
           )
