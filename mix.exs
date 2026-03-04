@@ -10,13 +10,13 @@ defmodule Sitemap.Mixfile do
       app: :sitemap,
       name: "Sitemap",
       version: "1.1.0",
-      elixir: ">= 1.3.0",
+      elixir: ">= 1.18.0",
       description: @description,
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
       deps: deps(),
-      source_url: "https://github.com/ikeikeikeike/sitemap"
+      source_url: "https://github.com/dicefm/sitemap"
     ]
   end
 
