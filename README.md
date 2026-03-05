@@ -1,17 +1,12 @@
-# Sitemap
-
-[![Build Status](http://img.shields.io/travis/ikeikeikeike/sitemap.svg?style=flat-square)](http://travis-ci.org/ikeikeikeike/sitemap)
-[![Hex version](https://img.shields.io/hexpm/v/sitemap.svg "Hex version")](https://hex.pm/packages/sitemap)
-[![Hex downloads](https://img.shields.io/hexpm/dt/sitemap.svg "Hex downloads")](https://hex.pm/packages/sitemap)
-[![Inline docs](https://inch-ci.org/github/ikeikeikeike/sitemap.svg)](http://inch-ci.org/github/ikeikeikeike/sitemap)
-[![hex.pm](https://img.shields.io/hexpm/l/ltsv.svg)](https://github.com/ikeikeikeike/sitemap/blob/master/LICENSE)
-
+# Sitemap – DICE Fork
 
 Generating sitemap.xml
 
+This repo was forked as the original has no further development happening.
+
+It has been [updated](https://github.com/dicefm/sitemap/pull/1) to compile cleanly with Elixir 1.18.
 
 ## Installation
-
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
@@ -23,7 +18,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
   end
   ```
 
-  2. Ensure sitemap is started before your application:
+  1. Ensure sitemap is started before your application:
 
   ```elixir
   def application do
@@ -104,7 +99,6 @@ end
 
 ###### Set options via arguments to `create`
 
-
 ```elixir
 defmodule Sitemaps do
   use Sitemap
@@ -121,7 +115,6 @@ end
 ```
 
 ###### Set options via `Mix` config
-
 
 ```elixir
 use Mix.Config
@@ -141,9 +134,8 @@ SITEMAP_COMPRESS=false SITEMAP_HOST=http://example.com mix run ./sitemap.exs
 
 And you guys should follow mix task documents, here:
 
-- https://hexdocs.pm/mix/Mix.Tasks.Run.html
-- https://hexdocs.pm/mix/Mix.Task.html
-
+- <https://hexdocs.pm/mix/Mix.Tasks.Run.html>
+- <https://hexdocs.pm/mix/Mix.Task.html>
 
 ##### Available options
 
@@ -154,7 +146,7 @@ And you guys should follow mix task documents, here:
 | max_sitemap_news     | 1000                   | SITEMAP_MAXNEWS       | Max news sitemap per index_file  |
 | max_sitemap_images   | 1000                   | SITEMAP_MAXIMAGES     | Max images per url  |
 | max_sitemap_filesize | 5000000                | SITEMAP_MAXFILESIZE   | Bytes |
-| host                 | http://www.example.com | SITEMAP_HOST          | Your domain, also host with http scheme.  |
+| host                 | <http://www.example.com> | SITEMAP_HOST          | Your domain, also host with http scheme.  |
 | filename             | sitemap                | SITEMAP_FILENAME      | Name of sitemap file.  |
 | files_path           | sitemap                | SITEMAP_SITEMAPS_PATH | After domain path's location on URL.  |
 | public_path          | sitemap                | SITEMAP_PUBLIC_PATH   | Write sitemap files to this local path.  |
@@ -185,10 +177,7 @@ Current Features or To-Do
 - [ ] Intelligent sitemap indexing
 - [ ] All of completing Examples
 
-
-
 ## Supports: generate kind of some sitemaps
-
 
 ### News Sitemaps
 
@@ -274,7 +263,6 @@ end
 
 Look at [Image sitemaps](https://support.google.com/webmasters/answer/178636) as required.
 
-
 ### Video sitemaps
 
 ```elixir
@@ -354,7 +342,6 @@ end
 
 Look at [Video sitemaps](https://developers.google.com/webmasters/videosearch/sitemaps#adding-video-content-to-a-sitemap) as required.
 
-
 ### Alternate Links
 
 ```elixir
@@ -386,7 +373,6 @@ end
 
 Look at [Alternate Links](https://support.google.com/webmasters/answer/2620865) as required.
 
-
 ### Geo Sitemaps
 
 ```elixir
@@ -417,7 +403,6 @@ end
 
 Look at [Geo Sitemaps](https://support.google.com/webmasters/answer/94555) as required.
 
-
 ### Mobile Sitemaps
 
 ```elixir
@@ -445,7 +430,6 @@ end
 ```
 
 Look at [Mobile Sitemaps](https://support.google.com/webmasters/answer/6082207) as required.
-
 
 ### PageMap sitemap
 
@@ -487,9 +471,7 @@ end
 
 Look at [PageMap sitemap](https://developers.google.com/custom-search/docs/structured_data#addtositemaps) as required.
 
-
 ### Additional links into the Sitemap Index
-
 
 ```elixir
 create do
@@ -524,11 +506,9 @@ end
 </sitemapindex>
 ```
 
-
 ### Known issue
 
 - [Compilation error with ** (EXIT) no process](https://github.com/ikeikeikeike/sitemap/issues/5#issue-200979852)
-
 
 ### Inspired by
 
