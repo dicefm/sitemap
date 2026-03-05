@@ -14,7 +14,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
   ```elixir
   def deps do
-    [{:sitemap, "~> 1.1"}]
+    [{:sitemap, github: "dicefm/sitemap"}]
   end
   ```
 
@@ -26,7 +26,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
   end
   ```
 
-#### Usage
+### Usage
 
 sitemap helps you define a module with a `generate` function which will build a sitemap for your site. You must decide how to call `generate` - via a manual Mix task, a recurring background job, or whatever you choose.
 
@@ -34,7 +34,7 @@ The resulting sitemap is currently written to a file. Because some web hosts do 
 
 You can always specify your own adapter module with a `write/2` function and persist the sitemaps wherever you like.
 
-###### Basic
+##### Basic
 
 ```elixir
 defmodule Sitemaps do
@@ -53,7 +53,7 @@ defmodule Sitemaps do
 end
 ```
 
-###### With Phoenix
+##### With Phoenix
 
 ```elixir
 defmodule Sitemaps do
@@ -80,7 +80,7 @@ end
 
 #### Ways to set sitemap's options
 
-###### Set options via the `use` statement
+##### Set options via the `use` statement
 
 ```elixir
 defmodule Sitemaps do
@@ -97,7 +97,7 @@ defmodule Sitemaps do
 end
 ```
 
-###### Set options via arguments to `create`
+##### Set options via arguments to `create`
 
 ```elixir
 defmodule Sitemaps do
@@ -114,10 +114,10 @@ defmodule Sitemaps do
 end
 ```
 
-###### Set options via `Mix` config
+##### Set options via `Mix` config
 
 ```elixir
-use Mix.Config
+import Config
 
 config :sitemap, [
   compress: false,
@@ -126,7 +126,7 @@ config :sitemap, [
 
 ```
 
-###### Set options via environment variables
+##### Set options via environment variables
 
 ```elixir
 SITEMAP_COMPRESS=false SITEMAP_HOST=http://example.com mix run ./sitemap.exs
