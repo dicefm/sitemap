@@ -409,6 +409,20 @@ defmodule Sitemap.BuildersUrlTest do
     assert xpath(parsed, ~x"//xhtml:link/@rel") == ~c"alternate nofollow"
   end
 
+  test "Alternates sitemap url without media" do
+    data = [alternates: [href: "http://www.example.fr/index.html", lang: "fr"]]
+
+    actual =
+      Url.to_xml("/index.html", data)
+      |> XmlBuilder.generate()
+
+    refute actual =~ "media"
+
+    parsed = parse(actual)
+    assert xpath(parsed, ~x"//xhtml:link/@href") == ~c"http://www.example.fr/index.html"
+    assert xpath(parsed, ~x"//xhtml:link/@hreflang") == ~c"fr"
+  end
+
   test "Multiple alternates sitemap url" do
     data = [
       alternates: [
